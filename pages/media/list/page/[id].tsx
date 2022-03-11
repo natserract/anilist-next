@@ -37,24 +37,6 @@ function Medias({ data }: Data) {
     router.replace(`/media/list/page/${value}`)
   }
 
-  // const renderMediaLists = () => {
-  //   const isMediaReady = data.media && data.media.length
-
-  //   return isMediaReady && Array.from(data.media).map((media) => (
-  //     <Grid key={media.id} sm={3} xs={6} item>
-  //       <Card
-  //         description={media.description}
-  //         href={`/media/detail/${stringToSlug(media.title.romaji)}`}
-  //         imgHeight={100}
-  //         imgSrc={media.coverImage.medium}
-  //         imgWidth={150}
-  //         subHeader={media.title.native}
-  //         title={media.title.romaji}
-  //       />
-  //     </Grid>
-  //   ))
-  // }
-
   return (
     <>
       <Seo
@@ -106,8 +88,16 @@ export async function getStaticPaths() {
       perPage: paginationConfig.perPage,
     },
   });
-  const pageInfo = responses.data.Page.pageInfo.lastPage;
-  const pageIdxs = Array(pageInfo + 1).fill(0).map((_, i) => i).filter((v) => v > 0);
+
+  // We set manual, because has issue prerendered
+  // Code error 429 (too many requests)
+  const limitPage = 50
+  const lastPage = responses.data.Page.pageInfo.lastPage;
+  const pageIdxs =
+    Array(lastPage)
+      .fill(0)
+      .map((_, i) => i)
+      .filter((v) => v > 0 && v < limitPage);
 
   return {
     paths: pageIdxs.map((id) => ({
@@ -115,6 +105,8 @@ export async function getStaticPaths() {
         id: String(id),
       },
     })),
+    // fallback is set to false because 
+    // we already know the slugs ahead of time
     fallback: false,
   };
 }
