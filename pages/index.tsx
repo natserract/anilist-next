@@ -1,16 +1,16 @@
 import type { NextPage } from 'next'
+import { useEffect } from 'react'
+import { useRouter } from "next/router";
+import React from 'react';
 
 const Home: NextPage = () => {
- return null
-}
+  const router = useRouter();
 
-export async function getStaticProps() {
-  return  {
-    redirect: {
-      permanent: false,
-      destination: "/media/list/page/1"
-    }
-  }
+  useEffect(() => {
+    router.push("/media/list/page/1")
+  }, [router])
+
+  return <React.Fragment />
 }
 
 export default Home
