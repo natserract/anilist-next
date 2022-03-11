@@ -24,6 +24,12 @@
       ],
       "@/utils/*": [
         "utils/*"
+      ],
+      "@/graphql/*": [
+        "graphql/*"
+      ],
+      "@/hooks/*": [
+        "hooks/*"
       ]
     }
   },
