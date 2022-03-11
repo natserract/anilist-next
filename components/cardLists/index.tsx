@@ -1,3 +1,4 @@
+import CircularProgress from "@material-ui/core/CircularProgress";
 import Grid from "@material-ui/core/Grid"
 import Typography from "@material-ui/core/Typography"
 
@@ -7,20 +8,30 @@ type ObjectType = { [k: string]: any }
 type CardListsProps<T> = {
   items: T[];
   render: (data: ObjectType) => React.ReactNode
+  isLoading?: boolean;
+  Empty?: JSX.Element
 }
 
 const CardList = <T,>(props: CardListsProps<T>) => {
-  const { items, render } = props
+  const { items, render, Empty, isLoading } = props
 
-  if (!items.length) return (
-    <Grid alignItems="center" justifyContent="center" container>
-      <Typography component="p" variant="body2">
-        Data is empty
-      </Typography>
+  if (isLoading) return (
+    <Grid alignItems="center" direction="column" justifyContent="center" container>
+      <CircularProgress />
     </Grid>
   )
 
-  const renderMediaLists = () => {
+  if (!items.length) return (
+    <Grid alignItems="center" justifyContent="center" container>
+      {Empty ?? (
+        <Typography component="p" variant="body2">
+          Data is empty
+        </Typography>
+      )}
+    </Grid>
+  )
+
+  const renderLists = () => {
     return items.map((item: ObjectType) => (
       <Grid key={item.id} sm={3} xs={6} item>
         {render(item)}
@@ -30,7 +41,7 @@ const CardList = <T,>(props: CardListsProps<T>) => {
 
   return (
     <Grid spacing={3} container>
-      {renderMediaLists()}
+      {renderLists()}
     </Grid>
   )
 }

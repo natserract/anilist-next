@@ -20,6 +20,42 @@ const forceFlex = {
   alignItems: "center"
 }
 
+const SearchComponent = () => {
+  const classes = useStyles()
+  const router = useRouter()
+
+  const [isSearchOpen, setSearchOpen] = useState(true)
+  const isSearchPage = router.pathname.includes('search')
+
+  if (isSearchPage) return <React.Fragment />
+
+  return (
+    <div
+      className={classNames(classes.search, {
+        [classes.searchFocused]: isSearchOpen,
+      })}
+      onClick={() => router.push('/media/search')}
+    >
+      <div
+        className={classNames(classes.searchIcon, {
+          [classes.searchIconOpened]: isSearchOpen,
+        })}
+        onClick={() => setSearchOpen(!isSearchOpen)}
+      >
+        <SearchIcon classes={{ root: classes.headerIcon }} />
+      </div>
+      <InputBase
+        classes={{
+          root: classes.inputRoot,
+          input: classes.inputInput,
+        }}
+        placeholder="Search…"
+        readOnly
+      />
+    </div>
+  )
+}
+
 const HeaderLayout: React.FC = () => {
   const classes = useStyles()
   const router = useRouter()
@@ -27,8 +63,6 @@ const HeaderLayout: React.FC = () => {
   const theme = useTheme()
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const matchXs = useMediaQuery(theme.breakpoints.down("xs"));
-
-  const [isSearchOpen, setSearchOpen] = useState(true)
 
   return (
     <AppBar position="static">
@@ -51,29 +85,7 @@ const HeaderLayout: React.FC = () => {
 
             <Grid md={7} style={{ ...forceFlex }} xs={6} item>
               <Grid md={7} xs={12} item>
-                <div
-                  className={classNames(classes.search, {
-                    [classes.searchFocused]: isSearchOpen,
-                  })}
-                  onClick={() => router.push('/media/search')}
-                >
-                  <div
-                    className={classNames(classes.searchIcon, {
-                      [classes.searchIconOpened]: isSearchOpen,
-                    })}
-                    onClick={() => setSearchOpen(!isSearchOpen)}
-                  >
-                    <SearchIcon classes={{ root: classes.headerIcon }} />
-                  </div>
-                  <InputBase
-                    classes={{
-                      root: classes.inputRoot,
-                      input: classes.inputInput,
-                    }}
-                    placeholder="Search…"
-                    readOnly
-                  />
-                </div>
+                <SearchComponent />
               </Grid>
 
               <Grid md={1} xs={2} item>

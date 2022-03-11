@@ -15,7 +15,7 @@ import Card from '@/components/card'
 import CardLists from '@/components/cardLists'
 import { stringToSlug } from '@/utils/string';
 
-const paginationConfig = { perPage: 12 };
+const paginationConfig = { perPage: 12, maxLastPage: 50 };
 const ogImgUrl = "https://app.gitbook.com/share/space/thumbnail/-LHizcWWtVphqU90YAXO.png?color=%233DB4F2&logo=https%3A%2F%2Ffirebasestorage.googleapis.com%2Fv0%2Fb%2Fgitbook-28427.appspot.com%2Fo%2Fspaces%252F-LHizcWWtVphqU90YAXO%252Favatar.png%3Fgeneration%3D1531944291782256%26alt%3Dmedia&theme="
 
 const apolloClient = initializeApollo();
@@ -71,7 +71,7 @@ function Medias({ data }: Data) {
         <Grid className={classes.paginationContainer} justifyContent='center' container>
           <Pagination
             color='primary'
-            count={data.lastPage}
+            count={paginationConfig.maxLastPage}
             page={page}
             onChange={handleChange}
           />
@@ -97,7 +97,7 @@ export async function getStaticPaths() {
     Array(lastPage)
       .fill(0)
       .map((_, i) => i)
-      .filter((v) => v > 0 && v < limitPage);
+      .filter((v) => v > 0 && v <= limitPage);
 
   return {
     paths: pageIdxs.map((id) => ({

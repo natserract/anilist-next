@@ -33,7 +33,7 @@ const Seo: React.FC<Partial<SeoProps>> = (props) => {
     },
     {
       name: "twitter:image:src",
-      content: props?.images[0]?.url,
+      content: props?.images ? props?.images[0]?.url : "",
     },
     {
       name: "al:web:url",
