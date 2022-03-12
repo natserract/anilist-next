@@ -118,11 +118,12 @@ export async function getStaticProps({ params }) {
       perPage: paginationConfig.perPage,
     },
   });
+  const media = mediaLists.data.Page.media as Media[]
 
   return addApolloState(apolloClient, {
     props: {
       data: {
-        media: mediaLists.data.Page.media,
+        media,
         total: mediaLists.data.Page.pageInfo.total,
         currentPage: mediaLists.data.Page.pageInfo.currentPage,
         lastPage: mediaLists.data.Page.pageInfo.lastPage,

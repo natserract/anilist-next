@@ -6,10 +6,14 @@ export const GET_LOCALSTATE_QUERY = gql`
   }
 `
 
+export const globalVar = makeVar({
+  ids: []
+})
+
 export function initCache(initialState = {}): InMemoryCache {
-  let cache = new InMemoryCache().restore(initialState)
+  const cache = new InMemoryCache().restore(initialState)
   cache.writeQuery({
-    data: {},
+    data: globalVar,
     query: GET_LOCALSTATE_QUERY,
   })
 

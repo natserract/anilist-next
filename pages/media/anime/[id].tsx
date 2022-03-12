@@ -125,6 +125,9 @@ const MediaDetail: NextPage<MediaDetailProps, unknown> = ({ data }) => {
 export async function getStaticPaths() {
   const responses = await apolloClient.query({
     query: MEDIALIST_QUERY,
+    variables: {
+      perPage: 12,
+    },
   });
 
   const limitPage = 50
@@ -138,7 +141,8 @@ export async function getStaticPaths() {
         id: String(media.id)
       }
     })),
-    fallback: true,
+    // See: https://nextjs.org/docs/api-reference/data-fetching/get-static-paths#fallback-blocking
+    fallback: "blocking",
   }
 }
 
