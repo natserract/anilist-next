@@ -20,6 +20,15 @@ export const MEDIA_FRAGMENT = gql`
         month
         year
       }
+      characters {
+        nodes {
+          id
+          name {
+            full
+            native
+          }
+        }
+      }
       coverImage {
         color
         extraLarge

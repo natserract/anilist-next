@@ -26,6 +26,15 @@ export type Media = {
     type: string;
     genres: string[]
   }
+  characters: {
+    nodes: {
+      id: number;
+      name: {
+        full: string;
+        native: string
+      }
+    }[]
+  }
 }
 
 export type MediaPagination = {

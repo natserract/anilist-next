@@ -16,7 +16,6 @@ import { MEDIALIST_QUERY } from "@/graphql/query/mediaList";
 import { initializeApollo } from "@/apollo/initApollo";
 import Seo from '@/components/seo'
 import Content from '@/components/content';
-import { stringToSlug } from "@/utils/string";
 
 
 const apolloClient = initializeApollo();
@@ -57,7 +56,7 @@ const SearchMedia = () => {
       <Seo
         contentType="content"
         metaDescription=""
-        metaTitle="Search Media"
+        metaTitle="Search Anime"
       />
 
       <Content>
@@ -87,9 +86,9 @@ const SearchMedia = () => {
             render={(media: Media) => (
               <Card
                 description={media.description}
-                href={`/media/detail/${stringToSlug(media.title.romaji)}`}
+                href={`/media/anime/${media.id}`}
                 imgHeight={100}
-                imgSrc={media.coverImage.medium}
+                imgSrc={media.coverImage.large}
                 imgWidth={150}
                 subHeader={media.title.native}
                 title={media.title.romaji}

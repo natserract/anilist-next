@@ -14,9 +14,9 @@ type SeoProps = {
 
 const Seo: React.FC<Partial<SeoProps>> = (props) => {
   const defaultSeo = {
-    site_name: "Functrees",
+    site_name: "Natserract",
     twitter: {
-      site: "@functrees",
+      site: "@natserract",
       cardType: "summary_large_image"
     },
     robots: {
@@ -24,7 +24,7 @@ const Seo: React.FC<Partial<SeoProps>> = (props) => {
     }
   }
 
-  const subTitle = `${!props?.isRoot ? (' |' + defaultSeo.site_name) : ': Anilist'}`
+  const subTitle = `${!props?.isRoot ? (' | ' + defaultSeo.site_name) : ': Anilist'}`
 
   const additionalMetaTags = [
     {

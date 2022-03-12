@@ -13,7 +13,6 @@ import Seo from '@/components/seo'
 import Content from '@/components/content';
 import Card from '@/components/card'
 import CardLists from '@/components/cardLists'
-import { stringToSlug } from '@/utils/string';
 
 const paginationConfig = { perPage: 12, maxLastPage: 50 };
 const ogImgUrl = "https://app.gitbook.com/share/space/thumbnail/-LHizcWWtVphqU90YAXO.png?color=%233DB4F2&logo=https%3A%2F%2Ffirebasestorage.googleapis.com%2Fv0%2Fb%2Fgitbook-28427.appspot.com%2Fo%2Fspaces%252F-LHizcWWtVphqU90YAXO%252Favatar.png%3Fgeneration%3D1531944291782256%26alt%3Dmedia&theme="
@@ -58,9 +57,9 @@ function Medias({ data }: Data) {
           render={(media: Media) => (
             <Card
               description={media.description}
-              href={`/media/detail/${stringToSlug(media.title.romaji)}`}
+              href={`/media/anime/${media.id}`}
               imgHeight={100}
-              imgSrc={media.coverImage.medium}
+              imgSrc={media.coverImage.large}
               imgWidth={150}
               subHeader={media.title.native}
               title={media.title.romaji}

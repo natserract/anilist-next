@@ -3,7 +3,7 @@ import gql from "graphql-tag";
 import { MEDIA_FRAGMENT } from "@/graphql/fragment/mediaFragment"
 
 export const MEDIALIST_QUERY = gql`
-  query MediaListQuery ($page: Int, $perPage: Int, $search: String){
+  query MediaListQuery ($page: Int, $perPage: Int, $id: Int, $search: String){
     Page(page: $page, perPage: $perPage) {
       pageInfo {
         total
@@ -13,7 +13,7 @@ export const MEDIALIST_QUERY = gql`
         hasNextPage
       }
 
-      media(search: $search, type: ANIME, sort: FORMAT_DESC) {
+      media(id: $id, search: $search, type: ANIME, sort: FORMAT_DESC) {
        ...MediaFragment
       }
     }
