@@ -7,7 +7,7 @@ export default class MyDocument extends Document {
     return (
       <Html lang="en">
         <Head>
-          <meta name="application-name" content="functrees.com" />
+          <meta content="natserract" name="application-name" />
         </Head>
         <body className="antialiased">
           <Main />

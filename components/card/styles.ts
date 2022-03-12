@@ -4,7 +4,7 @@ const styles = () =>
   createStyles({
     root: {
       maxWidth: 345,
-      height: 300
+      height: 350
     },
     media: {
       height: 0,
